@@ -1,7 +1,5 @@
 # PROYECTO SOCIO TECNOLOGICO
 
-Este repositorio tiene el fin de contener todos mis proyectos de estudio de programación.
-
 ## Formato del Proyecto
 El sistema se implementará como una aplicación web (página única).
 
