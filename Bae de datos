@@ -1,0 +1,55 @@
+### TABLAS DE DATOS
+
+-- Generado por Tecnopraxis — Diseñador de BD
+
+CREATE TABLE `usuarios` (
+  `Id_Usuario` VARCHAR(255) NOT NULL,
+  `Contrasena` VARCHAR(255),
+  `Numero_de_Estudiante` VARCHAR(255),
+  `Rol` VARCHAR(255),
+  PRIMARY KEY (`Id_Usuario`)
+);
+
+CREATE TABLE `Aula` (
+  `id_Aula` INT NOT NULL AUTO_INCREMENT,
+  `Nombre_del_Aula` VARCHAR(255),
+  `Id_Profesor` VARCHAR(255),
+  `Cantidad_de_Alumnos` INT,
+  PRIMARY KEY (`id_Aula`)
+);
+
+CREATE TABLE `Matriculas` (
+  `id_Matricula` VARCHAR(255) NOT NULL,
+  `Id_Estudiantes` VARCHAR(255),
+  `Id_Aula` INT,
+  `Notas` FLOAT(255),
+  PRIMARY KEY (`id_Matricula`)
+);
+
+CREATE TABLE `Actividades` (
+  `id_Actividad` INT NOT NULL AUTO_INCREMENT,
+  `Id_Aula` INT,
+  `Titulo` VARCHAR(255),
+  `Contenido` TEXT,
+  `Valor_Porcentual` INT,
+  `Intentos_Permitidos` INT,
+  `Tiempo_Limite` TIMESTAMP,
+  PRIMARY KEY (`id_Actividad`)
+);
+
+CREATE TABLE `Intentos` (
+  `id_Intentos` INT NOT NULL AUTO_INCREMENT,
+  `Id_Estudiante` VARCHAR(255),
+  `Id_Actividad` INT,
+  `Numero_de_Intentos` INT,
+  `Calificacion_Obtenida` FLOAT,
+  `Calificaion Obtenida` FLOAT,
+  PRIMARY KEY (`id_Intentos`)
+);
+
+ALTER TABLE `Aula` ADD CONSTRAINT `fk_rel_31` FOREIGN KEY (`Id_Profesor`) REFERENCES `usuarios` (`Id_Usuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Matriculas` ADD CONSTRAINT `fk_rel_32` FOREIGN KEY (`Id_Estudiantes`) REFERENCES `usuarios` (`Id_Usuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Matriculas` ADD CONSTRAINT `fk_rel_33` FOREIGN KEY (`Id_Aula`) REFERENCES `Aula` (`id_Aula`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Actividades` ADD CONSTRAINT `fk_rel_34` FOREIGN KEY (`Id_Aula`) REFERENCES `Aula` (`id_Aula`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Intentos` ADD CONSTRAINT `fk_rel_35` FOREIGN KEY (`Id_Estudiante`) REFERENCES `usuarios` (`Id_Usuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Intentos` ADD CONSTRAINT `fk_rel_36` FOREIGN KEY (`Id_Actividad`) REFERENCES `Actividades` (`id_Actividad`) ON DELETE RESTRICT ON UPDATE CASCADE;
